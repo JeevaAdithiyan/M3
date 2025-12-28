@@ -28,7 +28,19 @@ To formulate a C program to convert a decimal number into its binary equivalent 
 ### Step 8: 
    Stop
 # Program:
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    scanf("%d", &n);
+    for(i = 31; i >= 0; i--)
+        printf("%d", (n >> i) & 1);
+}
+
 # Output:
+<img width="1920" height="1080" alt="m3 1" src="https://github.com/user-attachments/assets/f9b58ecf-2ac7-46ed-bb40-d0278f4a24f6" />
+
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -67,9 +79,36 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9: 
   Stop
 # Program:
+#include <stdio.h>
+
+int main() {
+    int r, c, i, j, k, flag;
+    scanf("%d %d", &r, &c);
+    int a[r][c];
+    for(i = 0; i < r; i++)
+        for(j = 0; j < c; j++)
+            scanf("%d", &a[i][j]);
+
+    for(i = 0; i < r; i++) {
+        int min = a[i][0], col = 0;
+        for(j = 1; j < c; j++)
+            if(a[i][j] < min) { min = a[i][j]; col = j; }
+        flag = 1;
+        for(k = 0; k < r; k++)
+            if(a[k][col] > min) { flag = 0; break; }
+        if(flag) { printf("Saddle point at (%d,%d): %d", i, col, min); return 0; }
+    }
+    printf("No saddle point");
+}
+
+
 # Output:
+
+<img width="1920" height="1080" alt="m3 2" src="https://github.com/user-attachments/assets/011760a8-2909-4cdd-8fbc-a72e379f7d40" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
+
 
 
 # 19AI304-Fundamentals-of-C-Programming-2025-Odd-M3
@@ -101,7 +140,19 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10: 
   Stop
 # Program:
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s[100];
+    scanf("%s", s);
+    for(int i = strlen(s)-1; i >= 0; i--)
+        printf("%c", s[i]);
+}
+
 # Output:
+<img width="1920" height="1080" alt="m3 3" src="https://github.com/user-attachments/assets/fe3183b6-45f0-4901-a8e1-5077d3511ca5" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -135,7 +186,21 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8:
   Stop
 # Program:
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s[100];
+    int freq[256] = {0};
+    scanf("%s", s);
+    for(int i = 0; s[i]; i++) freq[s[i]]++;
+    for(int i = 0; i < 256; i++)
+        if(freq[i]) printf("%c: %d\n", i, freq[i]);
+}
+
 # Output:
+<img width="1920" height="1080" alt="m3 4" src="https://github.com/user-attachments/assets/a768f5a0-7c5d-4dc8-8d9f-2a1da69e4902" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -169,7 +234,32 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8: 
   Stop
 # Program:
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[200], words[50][50];
+    int count[50] = {0}, n = 0, i, j, k, flag;
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = 0; // remove newline
+
+    char *token = strtok(str, " ");
+    while(token) {
+        strcpy(words[n++], token);
+        token = strtok(NULL, " ");
+    }
+
+    for(i = 0; i < n; i++) {
+        flag = 0;
+        for(j = 0; j < i; j++)
+            if(strcmp(words[i], words[j]) == 0) { flag = 1; break; }
+        if(!flag) printf("%s ", words[i]);
+    }
+}
+
 # Output:
+<img width="1920" height="1080" alt="m3 5" src="https://github.com/user-attachments/assets/7506891f-b5e6-419b-b175-26ced2b60e15" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
